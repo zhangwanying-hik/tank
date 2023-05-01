@@ -9,11 +9,12 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
     Tank myTank = new Tank(200,200,Dir.DOWN);
     Bullet b = new Bullet(300,300,Dir.DOWN);
-//    static final Dir left = Dir.LEFT;
+    static final int GAME_WIDTH = 800;
+    static final int GAME_HEIGHT = 600;
 
     public TankFrame(){
         //窗口
-        setSize(800,600);
+        setSize(GAME_WIDTH,GAME_HEIGHT);
         //设不可改变大小(不能拖动右下角改变大小)
         setResizable(false);
         setTitle("tank war");
@@ -34,6 +35,30 @@ public class TankFrame extends Frame {
             }
         });
     }
+
+    Image offScreenImage = null;
+    //双缓冲[游戏中的一个概念]
+    //在大的图片加载时，会出现一条一条加载的现象
+    //这里在内存中画完再展示，消除这种现象(将内存的内容复制到显存)
+    @Override
+    public void update(Graphics g){
+        if(offScreenImage == null){
+            //在内存里创建出来
+            offScreenImage = this.createImage(GAME_WIDTH,GAME_HEIGHT);
+        }
+        //拿到图片中的画笔
+        Graphics gOffScreen = offScreenImage.getGraphics();
+        Color c = gOffScreen.getColor();
+        gOffScreen.setColor(Color.BLACK);
+        //把背景重新画一遍
+        gOffScreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        gOffScreen.setColor(c);
+        //调用paint方法，把这只画笔给paint
+        paint(gOffScreen);
+        //最后一次性将画面画出来
+        g.drawImage(offScreenImage,0,0,null);
+    }
+
 
     //窗口需要重新绘制的时候，它会自动调用
     @Override

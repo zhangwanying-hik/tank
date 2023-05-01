@@ -34,8 +34,11 @@ public class Tank {
 
     public void paint(Graphics g){
         System.out.println("paint"+x+","+y);
+        Color c = g.getColor();
+        g.setColor(Color.YELLOW);
         //绘制矩形，x，y为坐标，width，height为长宽
         g.fillRect(x,y,50,50);
+        g.setColor(c);
 
         move();
     }
