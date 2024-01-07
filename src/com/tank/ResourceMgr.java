@@ -7,6 +7,7 @@ import java.io.IOException;
 //资源管理者，负责加载图片
 public class ResourceMgr {
     public static BufferedImage tankL,tankR,tankU,tankD;
+    public static BufferedImage bulletL,bulletR,bulletU,bulletD;
 
     static {
         try {
@@ -14,6 +15,11 @@ public class ResourceMgr {
             tankR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/tankR.gif"));
             tankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/tankU.gif"));
             tankD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/tankD.gif"));
+
+            bulletL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/bulletL.gif"));
+            bulletR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/bulletR.gif"));
+            bulletU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/bulletU.gif"));
+            bulletD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("image/bulletD.gif"));
         } catch (IOException e) {
             e.printStackTrace();
         }
