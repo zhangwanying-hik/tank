@@ -1,4 +1,4 @@
-package com.tank;
+package tank;
 
 import java.awt.*;
 

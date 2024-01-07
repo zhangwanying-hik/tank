@@ -1,4 +1,4 @@
-package com.tank;
+package tank;
 
 import java.awt.*;
 
@@ -37,11 +37,29 @@ public class Tank {
 
     public void paint(Graphics g){
         System.out.println("paint"+x+","+y);
-        Color c = g.getColor();
-        g.setColor(Color.YELLOW);
-        //绘制矩形，x，y为坐标，width，height为长宽
-        g.fillRect(x,y,50,50);
-        g.setColor(c);
+//        Color c = g.getColor();
+//        g.setColor(Color.YELLOW);
+//        //绘制矩形，x，y为坐标，width，height为长宽
+//        g.fillRect(x,y,50,50);
+//        g.setColor(c);
+        //用图片
+        switch (dir){
+            case DOWN:
+                g.drawImage(ResourceMgr.tankD,x,y,null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.tankR,x,y,null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.tankL,x,y,null);
+                break;
+            case UP:
+                g.drawImage(ResourceMgr.tankU,x,y,null);
+                break;
+            default:
+                break;
+        }
+
 
         move();
     }
