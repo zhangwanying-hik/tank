@@ -7,6 +7,9 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED=5;
 
+    public static int WIDTH = ResourceMgr.tankD.getWidth();
+    public static int HEIGHT = ResourceMgr.tankD.getHeight();
+
     private boolean moving = false;
 
     private TankFrame tf = null;
@@ -87,7 +90,10 @@ public class Tank {
     }
 
     public void fire(){
+        //从坦克的中心发出子弹
+        int bX = this.x + Tank.WIDTH/2 -Bullet.WIDTH/2;
+        int by = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
 
-        tf.bullets.add(new Bullet(this.x,this.y,this.dir,this.tf));
+        tf.bullets.add(new Bullet(bX,by,this.dir,this.tf));
     }
 }
