@@ -15,8 +15,8 @@ public class TankFrame extends Frame {
     //敌人坦克
     List<Tank> tanks = new ArrayList<>();
 //    Bullet b = new Bullet(300,300,Dir.DOWN);
-    static final int GAME_WIDTH = 800;
-    static final int GAME_HEIGHT = 600;
+    static final int GAME_WIDTH = 1080;
+    static final int GAME_HEIGHT = 960;
 
     Explode e = new Explode(100,100,this);
 
