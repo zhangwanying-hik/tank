@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TankFrame extends Frame {
-    Tank myTank = new Tank(200,200,Dir.DOWN,this);
+    Tank myTank = new Tank(200,400,Dir.DOWN,this);
     //多颗子弹
     List<Bullet> bullets = new ArrayList<Bullet>();
+    //敌人坦克
+    List<Tank> tanks = new ArrayList<>();
 //    Bullet b = new Bullet(300,300,Dir.DOWN);
     static final int GAME_WIDTH = 800;
     static final int GAME_HEIGHT = 600;
@@ -77,6 +79,10 @@ public class TankFrame extends Frame {
 //        b.paint(g);
         for(int i=0;i<bullets.size();i++){
             bullets.get(i).paint(g);
+        }
+
+        for(int i=0;i<tanks.size();i++){
+            tanks.get(i).paint(g);
         }
     }
 
