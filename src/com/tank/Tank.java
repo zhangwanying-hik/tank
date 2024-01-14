@@ -12,6 +12,8 @@ public class Tank {
 
     private boolean moving = false;
 
+    private boolean living = true;
+
     private TankFrame tf = null;
 
     public Tank(int x, int y, Dir dir,TankFrame tf) {
@@ -39,6 +41,7 @@ public class Tank {
     }
 
     public void paint(Graphics g){
+        if(!living)tf.tanks.remove(this);
         System.out.println("paint"+x+","+y);
 //        Color c = g.getColor();
 //        g.setColor(Color.YELLOW);
@@ -90,10 +93,32 @@ public class Tank {
     }
 
     public void fire(){
+
+
         //从坦克的中心发出子弹
         int bX = this.x + Tank.WIDTH/2 -Bullet.WIDTH/2;
         int by = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
 
         tf.bullets.add(new Bullet(bX,by,this.dir,this.tf));
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void die(){
+        this.living = false;
     }
 }

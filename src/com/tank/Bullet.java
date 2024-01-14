@@ -11,7 +11,7 @@ public class Bullet {
     private Dir dir;
     private TankFrame tf = null;
 
-    private boolean live = true;
+    private boolean living = true;
 
     public Bullet(int x,int y,Dir dir,TankFrame tf){
         this.x = x;
@@ -21,7 +21,7 @@ public class Bullet {
     }
 
     public void paint(Graphics g){
-        if(!live){
+        if(!living){
             tf.bullets.remove(this);
         }
 //        Color c = g.getColor();
@@ -68,7 +68,22 @@ public class Bullet {
         }
 
         if(x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT){
-            live = false;
+            living = false;
         }
+    }
+
+    //判断子弹和坦克的矩形是否相交
+    public void collideWith(Tank tank){
+        //矩形
+        Rectangle rectangle1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
+        Rectangle rectangle2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
+        if(rectangle1.intersects(rectangle2)){
+            tank.die();
+            this.die();
+        }
+    }
+
+    public void die(){
+        this.living = false;
     }
 }
