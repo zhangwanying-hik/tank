@@ -13,10 +13,13 @@ public class Bullet {
 
     private boolean living = true;
 
-    public Bullet(int x,int y,Dir dir,TankFrame tf){
+    private Group group = Group.BAD;
+
+    public Bullet(int x,int y,Dir dir,Group group,TankFrame tf){
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
 
@@ -74,6 +77,7 @@ public class Bullet {
 
     //判断子弹和坦克的矩形是否相交
     public void collideWith(Tank tank){
+        if(this.group == tank.getGroup())return;
         //矩形
         Rectangle rectangle1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
         Rectangle rectangle2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
