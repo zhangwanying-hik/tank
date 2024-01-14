@@ -87,6 +87,14 @@ public class Bullet {
         }
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     public void die(){
         this.living = false;
     }
