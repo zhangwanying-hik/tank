@@ -14,11 +14,13 @@ public class TankFrame extends Frame {
     List<Bullet> bullets = new ArrayList<Bullet>();
     //敌人坦克
     List<Tank> tanks = new ArrayList<>();
+    //爆炸
+    List<Explode> explodes = new ArrayList<>();
 //    Bullet b = new Bullet(300,300,Dir.DOWN);
     static final int GAME_WIDTH = 1080;
     static final int GAME_HEIGHT = 960;
 
-    Explode e = new Explode(100,100,this);
+//    Explode e = new Explode(100,100,this);
 
     public TankFrame(){
         //窗口
@@ -76,6 +78,7 @@ public class TankFrame extends Frame {
         g.setColor(Color.WHITE);
         g.drawString("子弹的数量" + bullets.size(),10,60);
         g.drawString("敌人的数量" + tanks.size(),10,80);
+        g.drawString("爆炸的数量" + explodes.size(),10,100);
         g.setColor(c);
 
         myTank.paint(g);
@@ -88,14 +91,17 @@ public class TankFrame extends Frame {
             tanks.get(i).paint(g);
         }
 
+        for(int i=0;i<explodes.size();i++){
+            explodes.get(i).paint(g);
+        }
+
         //碰撞测试
         for(int i=0;i<bullets.size();i++){
             for (int j=0;j<tanks.size();j++){
                 bullets.get(i).collideWith(tanks.get(j));
             }
         }
-
-        e.paint(g);
+//        e.paint(g);
     }
 
     //键盘监听处理类，是一个内部类
